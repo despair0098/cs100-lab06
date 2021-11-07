@@ -2,6 +2,7 @@
 #define SELECT_NOT_HPP
 
 #include "select.hpp"
+#include "spreadsheet.hpp"
 
 using namespace std;
 
