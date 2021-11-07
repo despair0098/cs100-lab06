@@ -3,6 +3,8 @@
 
 #include <cstring>
 
+using namespace std;
+
 class Select
 {
 public:
@@ -38,4 +40,43 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+class Select_Contains: public Select
+{
+private:
+    const Spreadsheet* s;
+    string n; 
+    string w;
+public:
+    Select_Contains(const Spreadsheet* sheet, const std::string& name, std::string& word)
+    {
+        s = sheet;
+	n = name;
+	w = word;
+    }
+    
+    virtual bool select(const Spreadsheet* sheet, int row) const
+    {    
+	int column = sheet->get_column_by_name(n);
+	return (sheet->cell_data(row, column).find(w));
+    }
+};
+
+class Select_Not : public Select{
+        private:
+                const Spreadsheet* s;
+                string n;
+                string t;
+        public:
+                Select_Not(const Spreadsheet* sheet, const string& name, string& target){
+                        s = sheet;
+                        n = name;
+                        t = target;
+                }
+
+                virtual bool select(const Spreadsheet* sheet, int row) const {
+                        int column = sheet->get_column_by_name(n);
+                        return !(sheet->cell_data(row, column).find(t));
+
+                }
+};
 #endif //__SELECT_HPP__
