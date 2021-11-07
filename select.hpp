@@ -42,8 +42,8 @@ public:
 
 class Select_Not : public Select{
 	private:
-		Spreadsheet* s;
-		string n;
+		const Spreadsheet* s;
+		const string n;
 		string t;
 	piublic:
 		Select_Not(const Spreadsheet* sheet, const string& name, string& target){
@@ -54,7 +54,7 @@ class Select_Not : public Select{
 		
 		virtual bool select(const Spreadsheet* sheet, int row) const {
 			int column = sheet->get_column_by_name(n);
-			return !(sheet->cell_data(row, column).find(target));
+			return !(sheet->cell_data(row, column).find(t));
 			
 		}
 };
