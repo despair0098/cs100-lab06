@@ -20,12 +20,5 @@ class Select_Not : public Select{
 		virtual bool select(const Spreadsheet* sheet, int row) const {
 			int column = sheet->get_column_by_name(n);
 			return !(sheet->cell_data(row, column).find(t));
-		}
-
-
-
-
-
-
 };
 #endif
