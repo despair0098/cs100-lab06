@@ -41,6 +41,22 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
     return -1;
 }
 
-void print_selection(std::ostream& out) const;
-{
-    
+void Spreadsheet::print_selection(std::ostream& out) const {
+	if(select){
+		for(int i = 0; i < data.size(); i++){
+			if(select->select(this, i)){
+				for(int j = 0; j < data.at(i).size(); j++){
+					out << data.at(i).at(j) + " ";
+				}
+			}
+		out << "\n";
+		}
+	} else {
+		for(int i = 0; i < data.size(); i++){
+			for(int j = 0; j < data.at(i).size(); j++){
+				out << data.at(i).at(j) +  " ";	
+			}
+		out << "\n";
+		}
+	}
+}

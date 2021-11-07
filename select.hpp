@@ -3,8 +3,6 @@
 
 #include <cstring>
 
-using namespace std;
-
 class Select
 {
 public:
@@ -39,5 +37,4 @@ public:
     // Derived classes can instead implement this simpler interface.
     virtual bool select(const string& s) const = 0;
 };
-
 #endif //__SELECT_HPP__

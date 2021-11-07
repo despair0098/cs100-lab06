@@ -2,6 +2,7 @@
 #define SELECT_CONTAINS_HPP
 
 #include "select.hpp"
+#include "spreadsheet.hpp"
 
 using namespace std;
 
