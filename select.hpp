@@ -3,8 +3,6 @@
 
 #include <cstring>
 
-using namespace std;
-
 class Select
 {
 public:
@@ -26,7 +24,7 @@ class Select_Column: public Select
 protected:
     int column;
 public:
-    Select_Column(const Spreadsheet* sheet, const string& name)
+    Select_Column(const Spreadsheet* sheet, const std::string& name)
     {
         column = sheet->get_column_by_name(name);
     }
@@ -37,26 +35,6 @@ public:
     }
 
     // Derived classes can instead implement this simpler interface.
-    virtual bool select(const string& s) const = 0;
+    virtual bool select(const std::string& s) const = 0;
 };
-
-class Select_Not : public Select{
-	private:
-		const Spreadsheet* s;
-		const string n;
-		string t;
-	piublic:
-		Select_Not(const Spreadsheet* sheet, const string& name, string& target){
-			s = sheet;
-			n = name;
-			t = target;
-		}
-		
-		virtual bool select(const Spreadsheet* sheet, int row) const {
-			int column = sheet->get_column_by_name(n);
-			return !(sheet->cell_data(row, column).find(t));
-			
-		}
-};
-
 #endif //__SELECT_HPP__
