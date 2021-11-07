@@ -50,8 +50,8 @@ public:
     Select_Contains(const Spreadsheet* sheet, const std::string& name, std::string& word)
     {
         s = sheet;
-	n = name;
-	w = word;
+	      n = name;
+	      w = word;
     }
     
     virtual bool select(const Spreadsheet* sheet, int row) const
