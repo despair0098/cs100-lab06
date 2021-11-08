@@ -8,19 +8,17 @@ using namespace std;
 
 class Select_Not : public Select{
 	private:
-		const Spreadsheet* s;
-		string n;
-		string t;
+		Select* s1;
 	public:
-		Select_Not(const Spreadsheet* sheet, const string& name, string& target){
-			s = sheet;
-			n = name;
-			t = target;
+		Select_Not(Select* s){
+			s1 = s;
 		}
 		
+		~Select_Not(){
+			delete s1;
+		}
 		virtual bool select(const Spreadsheet* sheet, int row) const {
-			int column = sheet->get_column_by_name(n);
-			return (sheet->cell_data(row, column).find(t) == string::npos);
+			return !(s1->select(sheet, row));
 			
 		}
 };
