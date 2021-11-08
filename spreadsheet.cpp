@@ -48,6 +48,7 @@ void Spreadsheet::print_selection(std::ostream& out) const {
 				for(int j = 0; j < data.at(i).size(); j++){
 					out << data.at(i).at(j) + " ";
 				}
+				out << "\n";
 			}
 		out << "\n";
 		}
@@ -56,7 +57,8 @@ void Spreadsheet::print_selection(std::ostream& out) const {
 			for(int j = 0; j < data.at(i).size(); j++){
 				out << data.at(i).at(j) +  " ";	
 			}
-		out << "\n";
+			out << "\n";
 		}
+		out << "\n";
 	}
 }
