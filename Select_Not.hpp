@@ -24,5 +24,4 @@ class Select_Not : public Select{
 			
 		}
 };
-
 #endif
