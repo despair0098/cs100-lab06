@@ -3,6 +3,7 @@
 
 #include "select.hpp"
 #include "spreadsheet.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -23,6 +24,10 @@ public:
     virtual bool select(const Spreadsheet* sheet, int row) const
     {    
 	int column = sheet->get_column_by_name(n);
+	if(column == -1){
+		cout << "Could not find the column" << endl;
+		return false;		
+	}
 	return (sheet->cell_data(row, column).find(w) != string::npos);
     }
 };

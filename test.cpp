@@ -14,15 +14,11 @@ TEST(Select_Contains, test)
 {
 	Spreadsheet sheet;
 	stringstream s;
-	std::stringstream s;
 	
 	sheet.set_column_names({"First", "Last", "Age", "Major"});
 	sheet.add_row({"Amanda","Andrews","22","business"});
     	sheet.add_row({"Brian","Becker","21","computer science"});
     	sheet.add_row({"Carol","Conners","21","computer science"});
-	sheet.set_selection(new Select_Contains(&sheet, "Last", "Connors"));
-	sheet.print_selection(s);
-	EXPECT_EQ(s.str(), "Carol Connors 21 computer science");
 	sheet.set_selection(new Select_Contains(&sheet, "Last", "Conners"));
 	sheet.print_selection(s);
 	EXPECT_EQ("Carol Conners 21 computer science \n", s.str());
@@ -70,6 +66,40 @@ TEST(Select_Contains, test3)
 	
 	EXPECT_EQ("", s.str());
 }
+
+TEST(Select_Contains, test4){
+
+	Spreadsheet sheet;
+        std::stringstream s;
+
+        sheet.set_column_names({"First", "Last", "Age", "Major"});
+        sheet.add_row({"Amanda","Andrews","22","business"});
+        sheet.add_row({"Brian","Becker","21","computer science"});
+        sheet.add_row({"Carol","Conners","21","computer science"});
+        sheet.set_selection(new Select_Contains(&sheet, "AmongUs", "Carol"));
+        sheet.print_selection(s);
+	
+	EXPECT_EQ("", s.str());
+
+
+
+}
+
+TEST(Select_Contains, test5)
+{
+        Spreadsheet sheet;
+        std::stringstream s;
+
+        sheet.set_column_names({"First", "First", "Age", "Major"});
+        sheet.add_row({"Amanda","Andrews","22","business"});
+        sheet.add_row({"Brian","Becker","21","computer science"});
+        sheet.add_row({"Carol","Conners","21","computer science"});
+        sheet.set_selection(new Select_Contains(&sheet, "First", "Carol"));
+        sheet.print_selection(s);
+	
+	EXPECT_EQ("Carol Conners 21 computer science \n", s.str());
+}
+
 	
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
