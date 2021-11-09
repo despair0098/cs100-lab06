@@ -8,17 +8,19 @@
 
 #include "gtest/gtest.h"
 
+using namespace std;
+
 TEST(Select_Contains, test)
 {
 	Spreadsheet sheet;
-	std::stringstream s;
-	sheet.set_selction(new Select_Contains(&sheet, "Last", "Connors"));
+	stringstream s;
 	sheet.set_column_names({"First", "Last", "Age", "Major"});
 	sheet.add_row({"Amanda","Andrews","22","business"});
     	sheet.add_row({"Brian","Becker","21","computer science"});
     	sheet.add_row({"Carol","Conners","21","computer science"});
-	sheet.print_selection(std::cout);
-	EXPECT_EQ(sheet.print_selection(s.str()), "Carol Connors 21 computer science");
+	sheet.set_selection(new Select_Contains(&sheet, "Last", "Connors"));
+	sheet.print_selection(s);
+	EXPECT_EQ(s.str(), "Carol Connors 21 computer science");
 }
 	
 int main(int argc, char **argv) {
